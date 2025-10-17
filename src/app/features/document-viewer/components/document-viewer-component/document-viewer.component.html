@@ -1,0 +1,18 @@
+<tui-loader
+        [showLoader]="showLoader()"
+        [overlay]="true"
+        size="xxl"
+        class="loader"
+>
+    @if (document$ | async; as document) {
+        <app-document-viewer-layout-component [title]="document.name"></app-document-viewer-layout-component>
+
+        <div class="pages">
+            @for (page of document.pages; track page.imageUrl) {
+                <app-page-view [page]="page"></app-page-view>
+            }
+        </div>
+
+    }
+</tui-loader>
+

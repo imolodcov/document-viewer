@@ -1,0 +1,33 @@
+<div
+        [appDrag]="{x:annotation().position.x, y: annotation().position.y}"
+        (changePosition)="changePosition($event)"
+        dragHandle=".drag-handle"
+        class="annotation"
+>
+    <div class="action">
+        <button
+                class="drag-handle"
+                appearance="flat"
+                iconStart="@tui.grip"
+                title="Переместить аннотацию"
+                tuiIconButton
+                type="button"
+        ></button>
+        <button
+                appearance="flat"
+                iconStart="@tui.trash-2"
+                title="Удалить аннотацию"
+                tuiIconButton
+                type="button"
+                (click)="onclickRemove()"
+        ></button>
+    </div>
+    <tui-textfield tuiTextfieldSize="s">
+       <textarea
+               tuiTextarea
+               [max]="3"
+               [(ngModel)]="text"
+               (ngModelChange)="changeTextAnnotation($event)"
+       ></textarea>
+    </tui-textfield>
+</div>

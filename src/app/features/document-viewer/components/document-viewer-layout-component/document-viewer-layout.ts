@@ -27,6 +27,7 @@ import { ZoomService } from '../../../zoom';
 export class DocumentViewerLayoutComponent {
     public readonly title: InputSignal<string> = input.required();
     public readonly save: OutputEmitterRef<void> = output();
+    public readonly addAnnotation: OutputEmitterRef<void> = output();
     private readonly zoomService: ZoomService = inject(ZoomService);
     public readonly zoomFactor = this.zoomService.zoomFactor;
     public readonly blockDownZoom: Signal<boolean> = computed(()=> this.zoomFactor()<= 5);

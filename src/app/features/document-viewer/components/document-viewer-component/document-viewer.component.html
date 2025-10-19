@@ -7,15 +7,25 @@
     @if (document$ | async; as document) {
         <app-document-viewer-layout-component
                 [title]="document.name"
-                (save)="saveDocument(document)">
+                (save)="saveDocument(document)"
+                (addAnnotation)="addAnnotation(document)"
+        >
         </app-document-viewer-layout-component>
+
         <div class="pages">
             <div appZoomChange class="pages_content">
                 @for (page of document.pages; track page.imageUrl) {
                     <app-page-view [page]="page"></app-page-view>
                 }
+                @for (annotation of annotations.values(); track annotation.id) {
+                    <app-annotation-component
+                            [annotation]="annotation"
+                            (changeAnnotation)="changeAnnotation($event)"
+                            (removeEvent)="removeAnnotation($event)"
+                    >
+                    </app-annotation-component>
+                }
             </div>
         </div>
     }
 </tui-loader>
-

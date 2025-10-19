@@ -7,6 +7,7 @@ import { TuiLoader } from '@taiga-ui/core';
 import { Document } from '../../interfaces';
 import { AsyncPipe } from '@angular/common';
 import { PageViewComponent } from '../page-view-component/page-view.component';
+import { ZoomChangeDirective, ZoomService } from '../../../zoom';
 
 @Component({
     selector: 'app-document-viewer-component',
@@ -19,8 +20,9 @@ import { PageViewComponent } from '../page-view-component/page-view.component';
         TuiLoader,
         AsyncPipe,
         PageViewComponent,
+        ZoomChangeDirective,
     ],
-    providers: [DocumentViewerRequestService],
+    providers: [DocumentViewerRequestService, ZoomService],
 })
 export class DocumentViewerComponent {
     public readonly showLoader: WritableSignal<boolean> = signal<boolean>(true);
@@ -30,7 +32,7 @@ export class DocumentViewerComponent {
     private readonly documentId$: Observable<string> = this.activatedRoute.params.pipe(
         map((params: Params) => params['id']),
         debounceTime(500),
-        distinctUntilChanged()
+        distinctUntilChanged(),
     );
 
     public readonly document$: Observable<Document> = this.documentId$.pipe(
@@ -40,4 +42,7 @@ export class DocumentViewerComponent {
     );
 
 
+    public saveDocument(document: Document): void {
+        console.log(document);
+    }
 }

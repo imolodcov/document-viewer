@@ -1,13 +1,22 @@
-:host{
+:host {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: var(--tui-background-neutral-2-pressed);
+  overflow: auto;
+}
+.pages {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  overflow: auto;
+
+
+  &_content{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
 }
 
-.pages{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: auto;
-  align-items: center;
-}

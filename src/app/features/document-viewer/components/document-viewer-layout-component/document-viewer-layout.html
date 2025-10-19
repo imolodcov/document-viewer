@@ -1,1 +1,28 @@
-<h1 class="title" >{{ title() | upperCaseFirst }}</h1>
+<div class="layout-container">
+    <h1 class="title">{{ title() | upperCaseFirst }}</h1>
+    <div class="action">
+        {{ zoomFactor() }}
+        <div tuiGroup>
+            <button
+                    appearance="primary"
+                    iconStart="@tui.plus"
+                    title="Увеличить"
+                    tuiIconButton
+                    type="button"
+                    (click)="upZoom()"
+            >
+            </button>
+            <button
+                    appearance="primary"
+                    iconStart="@tui.minus"
+                    title="Уменьшить"
+                    tuiIconButton
+                    type="button"
+                    [disabled]="blockDownZoom()"
+                    (click)="downZoom()"
+            >
+            </button>
+        </div>
+        <button tuiButton appearance="primary" (click)="save.emit()"> Сохранить</button>
+    </div>
+</div>

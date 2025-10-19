@@ -5,14 +5,17 @@
         class="loader"
 >
     @if (document$ | async; as document) {
-        <app-document-viewer-layout-component [title]="document.name"></app-document-viewer-layout-component>
-
+        <app-document-viewer-layout-component
+                [title]="document.name"
+                (save)="saveDocument(document)">
+        </app-document-viewer-layout-component>
         <div class="pages">
-            @for (page of document.pages; track page.imageUrl) {
-                <app-page-view [page]="page"></app-page-view>
-            }
+            <div appZoomChange class="pages_content">
+                @for (page of document.pages; track page.imageUrl) {
+                    <app-page-view [page]="page"></app-page-view>
+                }
+            </div>
         </div>
-
     }
 </tui-loader>
 

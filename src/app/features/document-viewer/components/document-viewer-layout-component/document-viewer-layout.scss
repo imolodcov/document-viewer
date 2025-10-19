@@ -1,9 +1,19 @@
-:host {
+.layout-container{
   display: grid;
   padding: 2em;
-  border-bottom: 1px solid var(--tui-background-accent-1) ;
+  background-color: white;
+  box-shadow: 10px 5px 5px #888ea4;
+  grid-template-columns:  auto 15em;
+  margin-bottom: 1em;
 }
 
 .title {
   margin: auto;
+}
+
+.action{
+  display: flex;
+  gap: 1em;
+  margin-left: auto;
+  align-items: center;
 }

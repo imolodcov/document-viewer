@@ -13,11 +13,11 @@ import {
 import { DragPosition } from '../interfaces/drag-position.interface';
 
 @Directive({
-    selector: '[appDrag]',
+    selector: '[appDragDirective]',
     standalone: true,
 })
-export class Drag implements OnInit {
-    public readonly initialPosition: InputSignal<DragPosition> = input({x: 0, y: 0}, {alias: 'appDrag'});
+export class DragDirective implements OnInit {
+    public readonly initialPosition: InputSignal<DragPosition> = input({x: 0, y: 0}, {alias: 'appDragDirective'});
    public readonly dragHandle: InputSignal< string | null> = input( null);
     public readonly changePosition: OutputEmitterRef<DragPosition> = output();
 

@@ -4,24 +4,22 @@
         size="xxl"
         class="loader"
 >
-    @if (document$ | async; as document) {
+    @if (document(); as document) {
         <app-document-viewer-layout-component
                 [title]="document.name"
-                (save)="saveDocument(document)"
-                (addAnnotation)="addAnnotation(document)"
+                (save)="saveDocument()"
+                (addAnnotation)="addAnnotation()"
         >
         </app-document-viewer-layout-component>
 
         <div class="pages">
-            <div appZoomChange class="pages_content">
+            <div appZoomChange class="pages__content">
                 @for (page of document.pages; track page.imageUrl) {
                     <app-page-view [page]="page"></app-page-view>
                 }
                 @for (annotation of annotations.values(); track annotation.id) {
                     <app-annotation-component
                             [annotation]="annotation"
-                            (changeAnnotation)="changeAnnotation($event)"
-                            (removeEvent)="removeAnnotation($event)"
                     >
                     </app-annotation-component>
                 }

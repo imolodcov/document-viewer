@@ -1,17 +1,18 @@
 import {
     ChangeDetectionStrategy,
-    Component,
-    effect,
+    Component, computed,
+    effect, inject,
     input,
     InputSignal,
     output,
-    OutputEmitterRef,
+    OutputEmitterRef, Signal,
 } from '@angular/core';
 import { AnnotationInterface } from '../../interfaces';
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { TuiTextarea } from '@taiga-ui/kit';
 import { FormsModule } from '@angular/forms';
-import { Drag, DragPosition } from '../../../drag';
+import { DragDirective, DragPosition } from '../../../drag';
+import { DocumentService } from '../../services/document.service';
 
 @Component({
     selector: 'app-annotation-component',
@@ -20,7 +21,7 @@ import { Drag, DragPosition } from '../../../drag';
         TuiTextarea,
         FormsModule,
         TuiButton,
-        Drag,
+        DragDirective,
     ],
     templateUrl: './annotation.component.html',
     styleUrl: './annotation.component.scss',
@@ -28,26 +29,19 @@ import { Drag, DragPosition } from '../../../drag';
     standalone: true,
 })
 export class AnnotationComponent {
-    public readonly annotation: InputSignal<AnnotationInterface> = input.required();
-    public readonly removeEvent: OutputEmitterRef<string> = output();
-    public readonly changeAnnotation: OutputEmitterRef<AnnotationInterface> = output();
-    public text: string;
-
-    constructor() {
-        effect(() => {
-            this.text = this.annotation().text;
-        });
-    }
+    private readonly documentService: DocumentService = inject(DocumentService);
+    public annotation: InputSignal<AnnotationInterface> = input.required();
+    protected text: Signal<string> = computed(() => this.annotation().text);
 
     public onclickRemove(): void {
-        this.removeEvent.emit(this.annotation().id);
+        this.documentService.removeAnnotation(this.annotation().id);
     }
 
-    public changePosition(newPosition: DragPosition): void {
-        this.changeAnnotation.emit({...this.annotation(), ...newPosition});
+    public changePosition(position: DragPosition): void {
+        this.documentService.changeAnnotation({...this.annotation(), ...{position}});
     }
 
     public changeTextAnnotation(text: string): void {
-        this.changeAnnotation.emit({...this.annotation(), ...{text}});
+        this.documentService.changeAnnotation({...this.annotation(), ...{text}});
     }
 }

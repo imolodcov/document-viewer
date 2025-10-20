@@ -1,5 +1,5 @@
 <div
-        [appDrag]="{x:annotation().position.x, y: annotation().position.y}"
+        [appDragDirective]="{x:annotation().position.x, y: annotation().position.y}"
         (changePosition)="changePosition($event)"
         dragHandle=".drag-handle"
         class="annotation"
@@ -26,7 +26,7 @@
        <textarea
                tuiTextarea
                [max]="3"
-               [(ngModel)]="text"
+               [ngModel]="text()"
                (ngModelChange)="changeTextAnnotation($event)"
        ></textarea>
     </tui-textfield>

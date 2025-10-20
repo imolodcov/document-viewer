@@ -11,5 +11,4 @@ import { PageInterface } from '../../interfaces';
 export class PageViewComponent {
     public readonly page: InputSignal<PageInterface> = input.required();
     public readonly pageUrl: Signal<string> = computed(() => `assets/${ this.page().imageUrl }`);
-    public readonly altPage: Signal<string> = computed(() => `Не удалось загрузить страницу ${ this.page().number }`);
 }

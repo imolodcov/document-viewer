@@ -8,7 +8,7 @@ import {
     output, OutputEmitterRef,
     Signal,
 } from '@angular/core';
-import { UpperCaseFirstPipe } from '../../pipes';
+import { UpperCaseFirstPipe } from '../../pipes/upper-case-first-pipe';
 import { TuiButton, TuiGroup } from '@taiga-ui/core';
 import { ZoomService } from '../../../zoom';
 

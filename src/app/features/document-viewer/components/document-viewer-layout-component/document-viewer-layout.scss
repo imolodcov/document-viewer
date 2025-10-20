@@ -1,19 +1,18 @@
 .layout-container{
   display: grid;
-  padding: 2em;
+  padding: 2rem;
   background-color: white;
-  box-shadow: 10px 5px 5px #888ea4;
-  grid-template-columns: 12em auto 15em;
-  margin-bottom: 1em;
+  box-shadow: 1rem 0.5rem 0.5rem #888ea4;
+  grid-template-columns: 10rem auto 15rem;
+  margin-bottom: 1rem;
+
+  &__action{  display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    align-items: center;}
+
+  &__title{
+    margin: auto;
+  }
 }
 
-.title {
-  margin: auto;
-}
-
-.action{
-  display: flex;
-  gap: 1em;
-  margin-left: auto;
-  align-items: center;
-}

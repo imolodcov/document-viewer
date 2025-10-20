@@ -1,13 +1,14 @@
 <div class="layout-container">
     <button
+            class="layout-container__action"
             tuiButton
             type="button"
             (click)="addAnnotation.emit()"
     >
         Добавить анотацию
     </button>
-    <h1 class="title">{{ title() | upperCaseFirst }}</h1>
-    <div class="action">
+    <h1 class="layout-container__title">{{ title() | upperCaseFirst }}</h1>
+    <div class="layout-container__action">
         {{ zoomFactor() }}
         <div tuiGroup>
             <button
